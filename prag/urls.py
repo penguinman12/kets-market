@@ -20,11 +20,9 @@ from django.contrib import admin
 from django.urls import path, include
 
 from articleapp.views import ArticleListView
-from marketapp.views import MarketListView
-from tradeapp.views import UserTradeListView
 
 urlpatterns = [
-    path('', UserTradeListView.as_view(), name='home'),
+    path('', ArticleListView.as_view(), name='home'),
 
     path('admin/', admin.site.urls),
     path('accounts/', include('accountapp.urls')),

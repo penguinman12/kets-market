@@ -1,57 +1,81 @@
 {% extends 'base.html' %}
-{% load static %}
+
 
 {% block content %}
 
-<style>
-
-    .container {
-        padding: 0;
-        margin: 0, auto;
-    }
-
-    .container a {
-      width: 45%;
-      max-width: 250px;
-    }
-
-    .container div {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      
-      border-radius: 1rem;
-    }
-
-    .container img {
-      width: 100%;
-      border-radius: 1rem;
-    }
-
-</style>
-    {% if article_list %}
-    <div class="container">
-        {% for article in article_list %}
-        <a href="{% url 'articleapp:detail' pk=article.pk %}">
-            {% include 'snippets/card.html' with article=article %}
-        </a>
-        {% endfor %}
-    </div>
-    <script src="{% static 'js/magicgrid.js' %}"></script>
-    {% else %}
-    <div class="text-center">
-        <h1>No Articles YET!</h1>
-    </div>
-    {% endif %}
-
-    {% include 'snippets/pagination.html' with page_obj=page_obj %}
-
-    <div style="text-align: center">
-        <a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-3">
-            Create Article
-        </a>
-    </div>
-
+<div style = "display:flex">
+  <div style="text-align: center; max-width: 700px; margin: 4rem auto;">
+      <h3 style = "display:flex">
+          K-ETS 시장 가격
+      </h3>
+    <table border="1" cellspacing="0" cellpadding="10">
+      <thead>
+        <tr>
+          <th scope="col">날짜</th>
+          <th scope="col">K-ETS 가격(₩)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>08.13</td>
+          <td>9071 </td>
+        </tr>
+        <tr>
+          <td>08.14</td>
+          <td>9055 </td>
+        </tr>
+        <tr>
+          <td>08.15</td>
+          <td>9055 </td>
+        </tr>
+        <tr>
+          <td>08.16</td>
+          <td>9081 </td>
+        </tr>
+        <tr>
+          <td>08.17</td>
+          <td>9081 </td>
+        </tr>
+        <tr>
+          <td>08.18</td>
+          <td>9081 </td>
+        </tr>
+        <tr>
+          <td>08.19</td>
+          <td>9130 </td>
+        </tr>
+        <tr>
+          <td>08.20</td>
+          <td>9100 </td>
+        </tr>
+        <tr>
+          <td>08.21</td>
+          <td>9200 </td>
+        </tr>
+        <tr>
+          <td>08.22</td>
+          <td>9290 </td>
+        </tr>
+        <tr>
+          <td>08.23</td>
+          <td>9400 </td>
+        </tr>
+        <tr>
+          <td>08.24</td>
+          <td>9400 </td>
+        </tr>
+        <tr>
+          <td>08.25</td>
+          <td>9400 </td>
+        </tr>
+        <tr>
+          <td>08.26</td>
+          <td>     </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 
 {% endblock %}
