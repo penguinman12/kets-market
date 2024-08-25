@@ -1,4 +1,43 @@
+<style>
+    #trading-status.green {
+        color: green;
+    }
+    #trading-status.red {
+        color: red;
+    }
 
+    /* 중앙 정렬을 위한 추가 스타일 */
+    .center-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 18px;
+        font-weight: bold;
+    }
+</style>
+<script>
+    function updateDateTime() {
+        const now = new Date();
+        const dateTimeString = now.toLocaleString(); // 로컬 형식으로 날짜와 시간 표시
+        document.getElementById('datetime').innerText = dateTimeString; // datetime 요소에 날짜 및 시간 표시
+
+        const hours = now.getHours();
+        const tradingStatusElement = document.getElementById('trading-status');
+
+        if (hours >= 10 && hours < 12) {
+            tradingStatusElement.innerText = '거래 가능 시간';
+            tradingStatusElement.className = 'center-container green';
+        } else {
+            tradingStatusElement.innerText = '거래 불가능 시간';
+            tradingStatusElement.className = 'center-container red';
+        }
+    }
+
+    setInterval(updateDateTime, 10); // 0.01초마다 시간 업데이트
+</script>
     <div class="pragmatic_header">
         <div>
             <h1 class="pragmatic_logo">K-ETS MARKET</h1>
@@ -38,3 +77,19 @@
             </a>
         </div>
     </div>
+
+<div onload="updateDateTime()" style="position: relative; height: 50px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 0 20px; box-sizing: border-box;">
+        {% if user.is_authenticated %}
+        <div id="datetime"></div> <!-- 왼쪽에 날짜와 시간을 표시할 영역 -->
+        <div id="trading-status" class="center-container red"></div> <!-- 거래 가능/불가능 상태 표시 영역 -->
+        <div style="display: flex; justify-content: flex-end; flex: 1;">
+
+
+            <a href = "{% url 'tradeapp:create' %}" class = "pragmatic_header_nav">
+                <span>매도/매수</span>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>

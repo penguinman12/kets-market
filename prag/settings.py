@@ -60,6 +60,8 @@ INSTALLED_APPS = [
     'projectapp',
     'subscribeapp',
     'likeapp',
+    'tradeapp',
+    'seasonapp'
 ]
 
 MIDDLEWARE = [
