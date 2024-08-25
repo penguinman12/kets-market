@@ -12,8 +12,6 @@
           <th scope="col">거래 유형</th>
           <th scope="col">거래 물량</th>
           <th scope="col">거래 가격</th>
-          <th scope="col">성사 물량</th>
-          <th scope="col">성사 가격</th>
           <th scope="col">거래 성사</th>
         </tr>
       </thead>
@@ -24,8 +22,6 @@
           <td>{{ trade.trade_type }}</td>
           <td>{{ trade.quantity }}</td>
           <td>{{ trade.price }}</td>
-          <td>{{ trade.result_quantity }}</td>
-          <td>{{ trade.result_price }}</td>
           <td>{% if trade.result %}성공{% else %}실패{% endif %}</td>
         </tr>
         {% empty %}

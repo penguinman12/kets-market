@@ -1,17 +1,91 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
 <div>
   <h3>
-    현금 보유량 :  (₩)
+    현금 보유량 : 1000000 (₩)
   </h3>
   <h3>
-    배출권 보유량 : (₩/t)
+    배출권 보유량 : 500 (t)
   </h3>
 </div>
-<div style = "display:flex">
-  <div style="text-align: center; max-width: 700px; margin: 4rem auto;">
+<div style = "display: flex; justify-content: space-between; max-width: 1400px; margin: 2rem auto;">
+  <div style="flex: 1; margin-right: 1rem; text-align: center;">
+    <h3 style = "display:flex">
+      K-ETS 시장가격
+    </h3>
+    <table border="1" cellspacing="0" cellpadding="10">
+      <thead>
+        <tr>
+          <th scope="col">날짜</th>
+          <th scope="col">K-ETS 가격(₩)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>08.13</td>
+          <td>9071 </td>
+        </tr>
+        <tr>
+          <td>08.14</td>
+          <td>9055 </td>
+        </tr>
+        <tr>
+          <td>08.15</td>
+          <td>9055 </td>
+        </tr>
+        <tr>
+          <td>08.16</td>
+          <td>9081 </td>
+        </tr>
+        <tr>
+          <td>08.17</td>
+          <td>9081 </td>
+        </tr>
+        <tr>
+          <td>08.18</td>
+          <td>9081 </td>
+        </tr>
+        <tr>
+          <td>08.19</td>
+          <td>9130 </td>
+        </tr>
+        <tr>
+          <td>08.20</td>
+          <td>9100 </td>
+        </tr>
+        <tr>
+          <td>08.21</td>
+          <td>9200 </td>
+        </tr>
+        <tr>
+          <td>08.22</td>
+          <td>9290 </td>
+        </tr>
+        <tr>
+          <td>08.23</td>
+          <td>9400 </td>
+        </tr>
+        <tr>
+          <td>08.24</td>
+          <td>9400 </td>
+        </tr>
+        <tr>
+          <td>08.25</td>
+          <td>9400 </td>
+        </tr>
+        <tr>
+          <td>08.26</td>
+          <td>     </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="flex: 1; text-align: center;">
+    <h4 style = "display:flex;">
+      거래 내역
+    </h4>
     <table border="1" cellspacing="0" cellpadding="10">
       <thead>
         <tr>
@@ -19,32 +93,26 @@
           <th scope="col">거래 유형</th>
           <th scope="col">거래 물량</th>
           <th scope="col">거래 가격</th>
-          <th scope="col">성사 물량</th>
-          <th scope="col">성사 가격</th>
           <th scope="col">거래 성사</th>
         </tr>
       </thead>
       <tbody>
-        {% for trade in trade_list%}
+        {% for trade in trade_list %}
         <tr>
           <td>{{ trade.traded_at }}</td>
           <td>{{ trade.trade_type }}</td>
           <td>{{ trade.quantity }}</td>
           <td>{{ trade.price }}</td>
-          <td>{{ trade.result_quantity }}</td>
-          <td>{{ trade.result_price }}</td>
           <td>{% if trade.result %}성공{% else %}실패{% endif %}</td>
         </tr>
         {% empty %}
         <tr>
-          <td colspan="7">거래 내역이 없습니다.</td>
+          <td colspan="5">거래 내역이 없습니다.</td>
         </tr>
         {% endfor %}
-
       </tbody>
     </table>
   </div>
 </div>
-
 
 {% endblock %}

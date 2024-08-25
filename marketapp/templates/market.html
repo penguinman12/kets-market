@@ -1,10 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+
+{% block content %}
+
+<div style = "display:flex">
+  <div style="text-align: center; max-width: 700px; margin: 4rem auto;">
+    <table border="1" cellspacing="0" cellpadding="10">
+      <thead>
+        <tr>
+          <th scope="col">날짜</th>
+          <th scope="col">K-ETS 가격(₩)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for trade in trade_list%}
+        <tr>
+          <td>08.13</td>
+          <td>9071 </td>
+        </tr>
+        <tr>
+          <td>08.14</td>
+          <td>9055 </td>
+        </tr>
+        <tr>
+          <td>08.15</td>
+          <td>9055 </td>
+        </tr>
+        <tr>
+          <td>08.16</td>
+          <td>9081 </td>
+        </tr>
+        <tr>
+          <td>08.17</td>
+          <td>9081 </td>
+        </tr>
+        <tr>
+          <td>08.18</td>
+          <td>9081 </td>
+        </tr>
+        <tr>
+          <td>08.19</td>
+          <td>9130 </td>
+        </tr>
+        <tr>
+          <td>08.20</td>
+          <td>9100 </td>
+        </tr>
+        <tr>
+          <td>08.21</td>
+          <td>9200 </td>
+        </tr>
+        <tr>
+          <td>08.22</td>
+          <td>9290 </td>
+        </tr>
+        <tr>
+          <td>08.23</td>
+          <td>9400 </td>
+        </tr>
+        <tr>
+          <td>08.24</td>
+          <td>9400 </td>
+        </tr>
+        <tr>
+          <td>08.25</td>
+          <td>9400 </td>
+        </tr>
+        <tr>
+          <td>08.26</td>
+          <td>     </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+{% endblock %}

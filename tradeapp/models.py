@@ -9,5 +9,4 @@ class Trade(models.Model):
     price = models.DecimalField(max_digits=6,decimal_places=2,default=0.00)
     traded_at = models.DateField(auto_now_add=True, null=True)
     result = models.BooleanField(default=False)
-    result_price = models.DecimalField(max_digits=6,decimal_places=2,default=0.00)
-    result_quantity = models.PositiveIntegerField(default=0)
+
