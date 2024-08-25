@@ -24,9 +24,13 @@
             <a href="{% url 'accountapp:detail' pk=user.pk %}" class="prgmatic_header_nav">
                 <span>MyPage</span>
             </a>
-            <a href="{% url 'accountapp:logout' %}?next={{ request.path }}" class="prgmatic_header_nav">
+            <form method="POST" action="{% url 'accountapp:logout' %}" style="display: inline;">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <button type="submit" style="background: none; border: none; color: inherit; padding: 0 15px 0 0; cursor: pointer;">
                 <span>logout</span>
-            </a>
+            </button>
+        </form>
             {% endif %}
         </div>
     </div>
