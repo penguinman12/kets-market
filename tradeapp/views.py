@@ -13,12 +13,12 @@ class TradeCreateView(CreateView):
 
     def form_valid(self, form):
         temp_trade = form.save(commit=False)
-        temp_trade.writer = self.request.user
+        temp_trade.trader = self.request.user
         temp_trade.save()
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('tradeapp:detail', kwargs={'pk': self.object.pk})
+        return reverse('tradeapp:detail', kwargs={'pk': self.object.trader.pk})
 class TradeDetailView(DetailView):
     model = Trade
     context_object_name = 'target_trade'
@@ -33,7 +33,12 @@ class TradeListView(ListView):
     template_name = 'tradeapp/list.html'
     paginate_by = 50
 
+class UserTradeListView(ListView):
+    model = Trade
+    context_object_name = 'trade_list'
+    template_name = 'tradeapp/user_list.html'
+    paginate_by = 50
+
     def get_queryset(self):
-        return Trade.objects.all().order_by('-traded_at')
-
-
+        user = self.request.user
+        return Trade.objects.filter(trader=user).order_by('-traded_at')

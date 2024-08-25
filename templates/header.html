@@ -53,6 +53,9 @@
                 <span>SignUp</span>
             </a>
             {% else %}
+            <a href="{% url 'tradeapp:user_list' pk=user.pk %}" class="prgmatic_header_nav">
+                <span>MyTradeList</span>
+            </a>
             <a href="{% url 'accountapp:detail' pk=user.pk %}" class="prgmatic_header_nav">
                 <span>MyPage</span>
             </a>
@@ -74,6 +77,9 @@
             </a>
             <a href="{% url 'subscribeapp:list' %}" class="prgmatic_header_nav">
                 <span>Subscription</span>
+            </a>
+            <a href="{% url 'tradeapp:list' %}" class="prgmatic_header_nav">
+                <span>Trade List</span>
             </a>
         </div>
     </div>
