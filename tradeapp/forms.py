@@ -9,3 +9,9 @@ class TradeCreationForm(ModelForm):
     class Meta:
         model = Trade
         fields = ['trade_type','quantity','price']
+
+class TradeUpdateForm(ModelForm):
+
+    class Meta:
+        model = Trade
+        fields = ['traded_at','trade_type','quantity','price','result','trading_quantity','trading_price']

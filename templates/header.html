@@ -17,6 +17,12 @@
         font-size: 18px;
         font-weight: bold;
     }
+
+    /* 매도/매수 버튼 비활성화 스타일 */
+    .disabled-button {
+        pointer-events: none;
+        opacity: 0.5;
+    }
 </style>
 <script>
     function updateDateTime() {
@@ -26,57 +32,57 @@
 
         const hours = now.getHours();
         const tradingStatusElement = document.getElementById('trading-status');
+        const tradeButtonElement = document.getElementById('trade-button');
 
-        if (hours >= 10 && hours < 22) {
+        if (hours >= 10 && hours < 12) {
             tradingStatusElement.innerText = '거래 가능 시간';
             tradingStatusElement.className = 'center-container green';
+            tradeButtonElement.classList.remove('disabled-button'); // 버튼 활성화
         } else {
             tradingStatusElement.innerText = '거래 불가능 시간';
             tradingStatusElement.className = 'center-container red';
+            tradeButtonElement.classList.add('disabled-button'); // 버튼 비활성화
         }
     }
 
     setInterval(updateDateTime, 10); // 0.01초마다 시간 업데이트
 </script>
-    <div class="pragmatic_header">
+
+<div class="pragmatic_header">
+    <a href="{% url 'articleapp:list' %}" >
         <div>
             <h1 class="pragmatic_logo">K-ETS MARKET</h1>
         </div>
-
-        <div>
-
-            {% if not user.is_authenticated %}
-            <a href="{% url 'accountapp:login' %}?next={{ request.path }}" class="prgmatic_header_nav">
-                <span>login</span>
-            </a>
-            <a href="{% url 'accountapp:create' %}" class="prgmatic_header_nav">
-                <span>SignUp</span>
-            </a>
-            {% else %}
-            <a href="{% url 'tradeapp:user_list' pk=user.pk %}" class="prgmatic_header_nav">
-                <span>MyTradeList</span>
-            </a>
-            <form method="POST" action="{% url 'accountapp:logout' %}" style="display: inline;">
+    </a>
+    <div>
+        {% if not user.is_authenticated %}
+        <a href="{% url 'accountapp:login' %}?next={{ request.path }}" class="prgmatic_header_nav">
+            <span>login</span>
+        </a>
+        <a href="{% url 'accountapp:create' %}" class="prgmatic_header_nav">
+            <span>SignUp</span>
+        </a>
+        {% else %}
+        <a href="{% url 'tradeapp:user_list' pk=user.pk %}" class="prgmatic_header_nav">
+            <span>MyTradeList</span>
+        </a>
+        <form method="POST" action="{% url 'accountapp:logout' %}" style="display: inline;">
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ request.path }}">
             <button type="submit" style="background: none; border: none; color: inherit; padding: 0 15px 0 0; cursor: pointer;">
                 <span>logout</span>
             </button>
         </form>
-            {% endif %}
-        </div>
-
+        {% endif %}
     </div>
-
+</div>
 <div onload="updateDateTime()" style="position: relative; height: 50px;">
     <div style="display: flex; align-items: center; justify-content: space-between; padding: 0 20px; box-sizing: border-box;">
         {% if user.is_authenticated %}
         <div id="datetime"></div> <!-- 왼쪽에 날짜와 시간을 표시할 영역 -->
         <div id="trading-status" class="center-container red"></div> <!-- 거래 가능/불가능 상태 표시 영역 -->
         <div style="display: flex; justify-content: flex-end; flex: 1;">
-
-
-            <a href = "{% url 'tradeapp:create' %}" class = "pragmatic_header_nav">
+            <a href="{% url 'tradeapp:create' %}" id="trade-button" class="pragmatic_header_nav">
                 <span>매도/매수</span>
             </a>
         </div>

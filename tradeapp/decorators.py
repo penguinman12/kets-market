@@ -10,3 +10,10 @@ def trade_ownership_required(func):
             return HttpResponseForbidden()
         return func(request, *args, **kwargs)
     return decorated
+
+def trade_delete_required(func):
+    def decorated(request, *args, **kwargs):
+        trade = Trade.objects.get(pk=kwargs['pk'])
+
+        return func(request, *args, **kwargs)
+    return decorated

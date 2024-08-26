@@ -4,7 +4,7 @@
 {% block content %}
 
 <div style = "display:flex">
-  <div style="text-align: center; max-width: 700px; margin: 4rem auto;">
+  <div style="text-align: center; max-width: 1100px; margin: 4rem auto;">
     <table border="1" cellspacing="0" cellpadding="10">
       <thead>
         <tr>
@@ -13,16 +13,36 @@
           <th scope="col">거래 물량</th>
           <th scope="col">거래 가격</th>
           <th scope="col">거래 성사</th>
+          <th scope="col">거래된 물량</th>
+          <th scope="col">거래된 가격</th>
+          <th scope="col">거래자 정보</th>
+          <th scope="col">거래 결정</th>
+          <th scope="col">거래 삭제</th>
         </tr>
       </thead>
       <tbody>
         {% for trade in trade_list%}
         <tr>
-          <td>{{ trade.traded_at }}</td>
+          <td>{{ trade.traded_at|date:"Y-m-d H:i:s" }}</td>
           <td>{{ trade.trade_type }}</td>
           <td>{{ trade.quantity }}</td>
           <td>{{ trade.price }}</td>
           <td>{% if trade.result %}성공{% else %}실패{% endif %}</td>
+          <td>{{ trade.trading_quantity}}</td>
+          <td>{{ trade.trading_price}}</td>
+          <td>{{ trade.trader }}</td>
+          <td>
+             <a href="{% url 'tradeapp:update' pk=trade.pk %}"
+              class="btn btn-primary rounded-pill col-3">
+               Update
+             </a>
+          </td>
+          <td>
+             <a href="{% url 'tradeapp:delete' pk=trade.pk %}"
+              class="btn btn-danger rounded-pill col-3">
+               Delete
+             </a>
+          </td>
         </tr>
         {% empty %}
         <tr>
