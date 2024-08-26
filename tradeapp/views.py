@@ -18,7 +18,7 @@ class TradeCreateView(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('tradeapp:detail', kwargs={'pk': self.object.trader.pk})
+        return reverse('tradeapp:user_list', kwargs={'pk': self.object.trader.pk})
 class TradeDetailView(DetailView):
     model = Trade
     context_object_name = 'target_trade'
