@@ -14,10 +14,7 @@ class Account(models.Model):
     cash = models.DecimalField(max_digits=15, decimal_places=2, default=1000000.00)  # 초기 현금 잔액
 
 @receiver(post_save, sender=User)
-def create_user_account(sender, instance, created, **kwargs):
+def create_or_save_user_account(sender, instance, created, **kwargs):
     if created:
         Account.objects.create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_user_account(sender, instance, **kwargs):
     instance.account.save()
