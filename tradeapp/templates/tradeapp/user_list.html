@@ -32,12 +32,12 @@
         {% for trade in trade_user_list %}
         <tr>
           <td>{{ trade.traded_at|date:"Y-m-d" }}</td>
-<!--          <td>{{ trade.trade_type }}</td>-->
-<!--          <td>{{ trade.quantity }}</td>-->
-<!--          <td>{{ trade.price }}</td>-->
-<!--          <td>{% if trade.result %}성공{% else %}실패{% endif %}</td>-->
-<!--          <td>{{ trade.trading_quantity}}</td>-->
-<!--          <td>{{ trade.trading_price}}</td>-->
+          <td>{{ trade.trade_type }}</td>
+          <td>{{ trade.quantity }}</td>
+          <td>{{ trade.price }}</td>
+          <td>{% if trade.result %}성공{% else %}실패{% endif %}</td>
+          <td>{{ trade.trading_quantity}}</td>
+          <td>{{ trade.trading_price}}</td>
         </tr>
         {% empty %}
         <tr>
