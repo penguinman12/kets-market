@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="text-align: center;">
+  {% if user.is_authenticated %}
+    <h3>현금 보유량 : {{ user.account.cash }} (₩)</h3>
+    <h3>배출권 보유량 : {{ user.account.carbon_credits }} (t)</h3>
+  {% else %}
+    <p>로그인 후 계정 정보를 확인할 수 있습니다.</p>
+  {% endif %}
+</div>
+
+<div style="text-align: center;">
+  {% if user.is_authenticated %}
+  <h4>
+    거래 내역
+  </h4>
+  <div style="display: inline-block;">
+    <table border="1" cellspacing="0" cellpadding="10" style="margin: 0 auto;">
+      <thead>
+        <tr>
+          <th scope="col">거래 날짜</th>
+          <th scope="col">거래 유형</th>
+          <th scope="col">거래 신청 물량</th>
+          <th scope="col">거래 신청 가격</th>
+          <th scope="col">거래 성사</th>
+          <th scope="col">거래된 물량</th>
+          <th scope="col">거래된 가격</th>
+        </tr>
+      </thead>
+<!--      <tbody>-->
+<!--        {% for trade in trade_user_list %}-->
+<!--        <tr>-->
+<!--          <td>{{ trade.traded_at|date:"Y-m-d" }}</td>-->
+<!--          <td>{{ trade.trade_type }}</td>-->
+<!--          <td>{{ trade.quantity }}</td>-->
+<!--          <td>{{ trade.price }}</td>-->
+<!--          <td>{% if trade.result %}성공{% else %}실패{% endif %}</td>-->
+<!--          <td>{{ trade.trading_quantity}}</td>-->
+<!--          <td>{{ trade.trading_price}}</td>-->
+<!--        </tr>-->
+<!--        {% empty %}-->
+<!--        <tr>-->
+<!--          <td colspan="7">거래 내역이 없습니다.</td>-->
+<!--        </tr>-->
+<!--        {% endfor %}-->
+<!--      </tbody>-->
+    </table>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}

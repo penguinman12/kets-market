@@ -88,3 +88,21 @@ class UserTradeListView(ListView):
         context = super().get_context_data(**kwargs)
         context['user'] = self.request.user
         return context
+
+class UserTradeListView2(ListView):
+    model = Trade
+    context_object_name = 'trade_user_list'
+    template_name = 'tradeapp/user_list2.html'
+    paginate_by = 50
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_authenticated:
+            return Trade.objects.filter(trader=user).order_by('-traded_at')
+        else:
+            return Trade.objects.none()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user'] = self.request.user
+        return context
