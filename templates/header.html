@@ -34,7 +34,7 @@
         const tradingStatusElement = document.getElementById('trading-status');
         const tradeButtonElement = document.getElementById('trade-button');
 
-        if (hours >= 10 && hours < 22) {
+        if (hours >= 10 && hours < 12) {
             tradingStatusElement.innerText = '거래 가능 시간';
             tradingStatusElement.className = 'center-container green';
             tradeButtonElement.classList.remove('disabled-button'); // 버튼 활성화
