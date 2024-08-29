@@ -3,34 +3,35 @@
 
 {% block content %}
 
-<div style = "display:flex">
-  <div style="text-align: center; max-width: 700px; margin: 4rem auto;">
-    <table border="1" cellspacing="0" cellpadding="10">
-      <thead>
-        <tr>
-          <th scope="col">거래 날짜</th>
-          <th scope="col">거래 유형</th>
-          <th scope="col">거래 물량</th>
-          <th scope="col">거래 가격</th>
-          <th scope="col">거래 성사</th>
-        </tr>
-      </thead>
-      <tbody>
+<!--<div style = "display:flex">-->
+<!--  <div style="text-align: center; max-width: 700px; margin: 4rem auto;">-->
+<!--    <table border="1" cellspacing="0" cellpadding="10">-->
+<!--      <thead>-->
+<!--        <tr>-->
+<!--          <th scope="col">거래 날짜</th>-->
+<!--          <th scope="col">거래 유형</th>-->
+<!--          <th scope="col">거래 물량</th>-->
+<!--          <th scope="col">거래 가격</th>-->
+<!--          <th scope="col">거래 성사</th>-->
+<!--        </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
 
-        <tr>
+<!--        <tr>-->
 <!--          <td>{{ target_trade.traded_at }}</td>-->
-          <td>{{ target_trade.trade_type }}</td>
+<!--          <td>{{ target_trade.trade_type }}</td>-->
 <!--          <td>{{ target_trade.quantity }}</td>-->
 <!--          <td>{{ target_trade.price }}</td>-->
 <!--          <td>{{ target_trade.result }}</td>-->
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+<!--        </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
+<!--  </div>-->
+<!--</div>-->
 <div style="text-align: center">
   <h2>
     거래 성사 여부는 거래시간이 마감된 이후에 재조정됩니다!
+    + 오늘까지 거래 성사 여부는 서버 조정 후 내일 확인 가능합니다, 감사합니다!
   </h2>
 </div>
 
