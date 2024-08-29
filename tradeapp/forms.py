@@ -8,7 +8,7 @@ class TradeCreationForm(ModelForm):
 
     class Meta:
         model = Trade
-        fields = ['trade_type','quantity','price']
+        fields = ['trade_type','quantity','price','trade_reason']
 
 class TradeUpdateForm(ModelForm):
 

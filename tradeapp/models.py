@@ -15,4 +15,4 @@ class Trade(models.Model):
     result = models.BooleanField(default=False)
     trading_quantity = models.PositiveIntegerField(default = 0)
     trading_price = models.DecimalField(max_digits=7, decimal_places=2, default=0.00)
-
+    trade_reason = models.TextField(null=True)
