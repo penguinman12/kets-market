@@ -72,7 +72,7 @@ class TradeListView(ListView):
     paginate_by = 50
 
     def get_queryset(self):
-        return Article.objects.all().order_by('-traded_at')
+        return Trade.objects.all().order_by('-traded_at')
 
 class UserTradeListView(ListView):
     model = Trade

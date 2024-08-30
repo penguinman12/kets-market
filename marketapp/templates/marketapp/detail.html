@@ -16,16 +16,14 @@
         </tr>
       </thead>
       <tbody>
-        {% for market in market_list%}
         <tr>
-          <td>{{ market.market_date }}</td>
-          <td>{{ market.price }}</td>
+          <td>{{ target_market.market_date }}</td>
+          <td>{{ target_market.price }}</td>
         </tr>
         {% empty %}
         <tr>
           <td colspan="4"> 시장 가격 조정 중...</td>
         </tr>
-        {% endfor %}
       </tbody>
     </table>
   </div>
@@ -33,3 +31,4 @@
 
 
 {% endblock %}
+
