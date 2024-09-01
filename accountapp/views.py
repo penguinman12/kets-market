@@ -9,11 +9,13 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
-from django.views.generic.list import MultipleObjectMixin
+from django.views.generic.list import MultipleObjectMixin, ListView
 
 from accountapp.decorators import account_ownership_required
 from accountapp.forms import AccountUpdateForm
 from articleapp.models import Article
+from marketapp.models import Market
+from tradeapp.models import Trade
 
 has_ownership = [account_ownership_required, login_required]
 
@@ -54,3 +56,22 @@ class AccountDeleteView(DeleteView):
     context_object_name = 'target_user'
     success_url = reverse_lazy('accountapp:login')
     template_name = 'accountapp/delete.html'
+
+
+class AccountListView(ListView):
+    model = User
+    context_object_name = 'user_list'
+    template_name = 'accountapp/list.html'
+    paginate_by = 50
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Trade 모델 중에서 id가 가장 큰 객체를 가져옵니다.
+        latest_market_price = Market.objects.latest('id')
+
+        context['latest_market_price'] = latest_market_price
+        # 가져온 객체를 컨텍스트에 추가합니다.
+
+
+        return context
