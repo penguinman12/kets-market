@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load account_filters %}
 {% block content %}
 <div class = "pragmatic_header">
   <a href="{% url 'marketapp:marketsecret' %}" class="prgmatic_header_nav">
@@ -21,6 +21,7 @@
           <th scope="col"> 유저 id</th>
           <th scope="col"> 현금 보유량</th>
           <th scope="col"> 배출권 보유량</th>
+          <th scope="col"> 수익률 </th>
         </tr>
       </thead>
       <tbody>
@@ -29,6 +30,7 @@
           <td>{{ user }}</td>
           <td>{{ user.account.carbon_credits }}</td>
           <td>{{ user.account.cash }}</td>
+          <td>{{ user|calculate_percentage:latest_market_price.price }}%</td>
         </tr>
         {% empty %}
         <tr>

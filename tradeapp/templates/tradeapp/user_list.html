@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
-
+{% load trade_filters %}
 {% block content %}
 <div style="text-align: center;">
   {% if user.is_authenticated %}
-    <h3>현금 보유량 : {{ user.account.cash }} (₩)</h3>
-    <h3>배출권 보유량 : {{ user.account.carbon_credits }} (t)</h3>
+    <h3>현금 보유량 : {{ user.account.cash }} ₩</h3>
+    <h3>배출권 보유량 : {{ user.account.carbon_credits }} t</h3>
+    <h3>수익률 : {{ user|calculate_percentage:latest_market_price.price }} % </h3>
   {% else %}
     <p>로그인 후 계정 정보를 확인할 수 있습니다.</p>
   {% endif %}

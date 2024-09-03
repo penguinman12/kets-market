@@ -3,6 +3,7 @@ from django.views.generic import CreateView, DetailView, UpdateView, DeleteView,
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from tradeapp.models import Trade
+from marketapp.models import Market
 from tradeapp.decorators import trade_ownership_required,trade_delete_required
 from tradeapp.forms import TradeCreationForm,TradeUpdateForm
 from django.db import transaction
@@ -90,4 +91,11 @@ class UserTradeListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['user'] = self.request.user
+
+        # Trade 모델 중에서 id가 가장 큰 객체를 가져옵니다.
+        latest_market_price = Market.objects.latest('id')
+
+        context['latest_market_price'] = latest_market_price
+        # 가져온 객체를 컨텍스트에 추가합니다.
+
         return context
