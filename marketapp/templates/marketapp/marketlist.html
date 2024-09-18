@@ -1,13 +1,11 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
 
-<div style = "display:flex">
-  <div style="text-align: center; max-width: 1100px; margin: 4rem auto;">
-    <h3 style = "display:flex">
-      K-ETS 시장 가격
-    </h3>
+<div style="display: flex; justify-content: center; margin: 4rem auto;">
+  <!-- 왼쪽에 테이블 위치 -->
+  <div style="text-align: center; max-width: 600px; margin-right: 2rem;">
+    <h3>K-ETS 시장 가격</h3>
     <table border="1" cellspacing="0" cellpadding="10">
       <thead>
         <tr>
@@ -16,21 +14,78 @@
         </tr>
       </thead>
       <tbody>
-        {% for market in market_list%}
+        {% for market in market_list %}
         <tr>
           <td>{{ market.market_date|date:"Y-m-d" }}</td>
           <td>{{ market.price }}</td>
         </tr>
         {% empty %}
         <tr>
-          <td colspan="4"> 시장 가격 조정 중...</td>
+          <td colspan="2">시장 가격 조정 중...</td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
   </div>
+
+  <!-- 오른쪽에 그래프 위치 -->
+  <div style="max-width: 600px;">
+    <canvas id="marketPriceChart" width="700" height="500"></canvas>
+  </div>
 </div>
 
+<!-- Chart.js 라이브러리 추가 -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  // 파이썬의 market_list 데이터를 자바스크립트에서 사용 가능한 형식으로 변환
+  let labels = [
+    {% for market in market_list %}
+      '{{ market.market_date|date:"Y-m-d" }}',
+    {% endfor %}
+  ];
+
+  let data = [
+    {% for market in market_list %}
+      {{ market.price }},
+    {% endfor %}
+  ];
+
+  labels.reverse();
+  data.reverse();
+
+  // Chart.js를 사용하여 그래프 생성
+  const ctx = document.getElementById('marketPriceChart').getContext('2d');
+  const marketPriceChart = new Chart(ctx, {
+    type: 'line', // 그래프 타입 (line, bar 등)
+    data: {
+      labels: labels, // 날짜
+      datasets: [{
+        label: 'K-ETS 가격(₩)', // 그래프 레이블
+        data: data, // 가격 데이터
+        borderColor: 'rgba(75, 192, 192, 1)', // 그래프 선 색상
+        fill: false, // 선 아래 채우기 옵션
+        tension: 0.1 // 선의 곡선 정도
+      }]
+    },
+    options: {
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: '날짜'
+          }
+        },
+        y: {
+          title: {
+            display: true,
+            text: 'K-ETS 가격(₩)'
+          },
+
+        }
+      }
+    }
+  });
+</script>
 
 {% endblock %}
-

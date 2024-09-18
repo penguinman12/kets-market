@@ -35,7 +35,7 @@
         const tradingStatusElement = document.getElementById('trading-status');
         const tradeButtonElement = document.getElementById('trade-button');
 
-        if (dayOfWeek >= 4 && dayOfWeek <= 5 && hours >= 10 && hours < 12) {
+        if (dayOfWeek >= 1 && dayOfWeek <= 5 && hours >= 10 && hours < 12) {
             tradingStatusElement.innerText = '거래 가능 시간';
             tradingStatusElement.className = 'center-container green';
             tradeButtonElement.classList.remove('disabled-button'); // 버튼 활성화
@@ -50,11 +50,16 @@
 </script>
 
 <div class="pragmatic_header">
+    <div style="display: flex; align-items: center; justify-content: center; position: relative;">
+    <div style="position: absolute; left: 0;margin-left: 20px;">
+        <img src="/static/cocf.png" alt="우리들의 미래 로고" style="height: 156px;">
+    </div>
     <a href="{% url 'marketapp:marketlist' %}" >
-        <div>
+        <div >
             <h1 class="pragmatic_logo">K-ETS MARKET</h1>
         </div>
     </a>
+    </div>
     <div>
         {% if not user.is_authenticated %}
         <a href="{% url 'accountapp:login' %}?next={{ request.path }}" class="prgmatic_header_nav">
