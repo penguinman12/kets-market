@@ -37,7 +37,7 @@ class TradeUpdateView(UpdateView):
             if trade.trade_type == 'buy' and trade.result:
                 # 매수일 경우
                 if trade.trader.account.cash >= trade.trading_price:
-                    trade.trader.account.cash -= trade.trading_price
+                    trade.trader.account.cash -= (trade.trading_price*trade.trading_quantity)
                     trade.trader.account.carbon_credits += trade.trading_quantity
                 else:
                     raise ValueError("잔액이 부족합니다.")
@@ -45,7 +45,7 @@ class TradeUpdateView(UpdateView):
                 # 매도일 경우
                 if trade.trader.account.carbon_credits >= trade.trading_quantity:
                     trade.trader.account.carbon_credits -= trade.trading_quantity
-                    trade.trader.account.cash += trade.trading_price
+                    trade.trader.account.cash += (trade.trading_price*trade.trading_quantity)
                 else:
                     raise ValueError("탄소 배출권이 부족합니다.")
 
